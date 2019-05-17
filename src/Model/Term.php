@@ -28,6 +28,18 @@ class Term extends Model
     protected $primaryKey = 'term_id';
 
     /**
+     * @var array
+     */
+    protected $fillable = ['name', 'slug', 'term_group'];
+
+    /**
+     * @var array
+     */
+    protected $attributes = [
+        'term_group' => 0,
+    ];
+
+    /**
      * @var bool
      */
     public $timestamps = false;
@@ -38,5 +50,31 @@ class Term extends Model
     public function taxonomy()
     {
         return $this->hasOne(Taxonomy::class, 'term_id');
+    }
+
+    /**
+     * @param   \Illuminate\Database\Query\Builder  $query
+     * @param   string|array  $taxonomies
+     * @return  void
+     */
+    public function scopeWhereTaxonomy($query, $taxonomies)
+    {
+        if (!is_array($taxonomies)) {
+            $taxonomies = [$taxonomies];
+        }
+        $query->whereHas('taxonomy', function ($query) use ($taxonomies) {
+            $query->whereIn('taxonomy', $taxonomies);
+        });
+    }
+    /**
+     * Alias of scopeWhereTaxonomy method.
+     *
+     * @param   \Illuminate\Database\Query\Builder  $query
+     * @param   array  $taxonomies
+     * @return  void
+     */
+    public function scopeWhereTaxonomies($query, array $taxonomies = [])
+    {
+        $this->scopeWhereTaxonomy($query, $taxonomies);
     }
 }
