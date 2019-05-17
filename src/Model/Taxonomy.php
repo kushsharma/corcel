@@ -29,6 +29,12 @@ class Taxonomy extends Model
      */
     protected $with = ['term'];
 
+    protected $fillable = [ 'term_id', 'taxonomy' ];
+
+    protected $attributes = [
+        'description' => null
+    ];
+
     /**
      * @var bool
      */

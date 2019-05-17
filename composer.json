@@ -1,15 +1,10 @@
 {
-    "name": "jgrossi/corcel",
+    "name": "kushsharma/corcel",
     "replace": { "juniorgrossi/corcel": "self.version" },
-    "description": "Use WordPress backend with Laravel or any PHP framework",
+    "description": "Use WordPress backend with Laravel or any PHP framework - forked",
     "homepage": "http://github.com/corcel/corcel",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Junior Grossi",
-            "email": "juniorgro@gmail.com",
-            "homepage": "http://jgrossi.com"
-        }
+    "authors": [        
     ],
     "require": {
         "php": ">=7.1.3",
